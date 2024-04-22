@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:_6002CEM_Maui_App.ViewModels"
+             x:Class="_6002CEM_Maui_App.Views.SettingsPage"
+             Title="SettingsPage"
+             BackgroundColor="{DynamicResource Primary}">
+    <ScrollView>
+        <VerticalStackLayout Padding="12, 5" Spacing="15">
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource PrimaryDark}" BorderColor="Transparent">
+                <VerticalStackLayout>
+                    <Label Text="Select Theme" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Picker x:Name="themePicker" Title="Select a theme..." SelectedItem="{Binding SelectedItem}" 
+                            TextColor="{DynamicResource PrimaryDarkText}" >
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Light (Default)</x:String>
+                                <x:String>Dark</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

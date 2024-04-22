@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:_6002CEM_Maui_App.ViewModels"
+             x:Class="_6002CEM_Maui_App.Views.MainPage"
+             Title="MainPage"
+             BackgroundColor="{DynamicResource Primary}">
+ 
+    <ScrollView>
+        <Grid RowDefinitions=".08*, .4*, .07*, .32*, .11*,.02*" Margin="9, 0">
+
+            <Frame CornerRadius="30" Padding="0" Margin="0" Grid.Row="0">
+                <SearchBar x:Name="SearchBar"
+                           Placeholder="Search for recipes..."  
+                           FontFamily="CocogooseProSemiLight" 
+                           FontSize="15" 
+                           BackgroundColor="{DynamicResource PrimaryDark}"
+                           CancelButtonColor="{DynamicResource PrimaryDarkText}"
+                           TextColor="{DynamicResource PrimaryDarkText}"
+                           VerticalOptions="Center"
+                           Grid.Row="0" 
+                           SearchCommand="{Binding SearchCommand}"
+                           SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"/>
+            </Frame>
+
+
+            <CarouselView ItemsSource="{Binding Recipes}" Loop="True" Grid.Row="1">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions=".2*,.6*,.2*" Padding="0, 7">
+                            <Border
+                                Grid.RowSpan="3"
+                                BackgroundColor="White"
+                                Stroke="Black"
+                                StrokeShape="RoundRectangle 30,30,30,30"
+                                StrokeThickness="0"
+                                Margin="5, 5, 8, 0">
+                                <Image Aspect="AspectFill" Source="{Binding Image}" Grid.RowSpan="3" />
+                                <Border.Shadow>
+                                    <Shadow Brush="{DynamicResource PrimaryDarkText}" Opacity="0.9" Offset="8,8" Radius="12"/>
+                                </Border.Shadow>
+                            </Border>
+                            <VerticalStackLayout Grid.Row="2" Margin="30,-30,0,0">
+                                <Label Text="{Binding PreparationTime, StringFormat='Preparation Time: {0:%m} mins'}"
+                                       TextColor="White"
+                                       FontSize="Medium"/>
+                                <Label Text="{Binding Title}" FontFamily="CocogooseProSemiLight" FontSize="Title" TextColor="White">
+                                </Label>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <StackLayout Orientation="Horizontal" Grid.Row="2" TranslationY="-4" Padding="7, 0">
+                <Label Text="Explore our vast collection" FontFamily="CocogooseProSemiLight" FontSize="Medium" TextColor="{DynamicResource PrimaryDarkText}"
+                    TranslationY="15" HorizontalOptions="Start"/>
+                <Label Text="&lt;    > " FontFamily="CocogooseProSemiLight" FontSize="Large" TextColor="{DynamicResource PrimaryDarkText}" Padding="0, 12" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+
+
+            <CarouselView ItemsSource="{Binding Recipes}" 
+                          Loop="True" 
+                          PeekAreaInsets="70"
+                          Grid.Row="3"
+                          Margin="8, 7">
+                <CarouselView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15" />
+                </CarouselView.ItemsLayout>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions=".3*,.35*,.25*, .15" >
+                            <Frame
+                                Grid.RowSpan="3"
+                                BackgroundColor="White"
+                                Padding="0"
+                                CornerRadius="30"
+                                WidthRequest="160"
+                                Margin="2">
+                                <Image Aspect="AspectFill" Source="{Binding Image}" Grid.RowSpan="3" />
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainPageViewModel}}, Path=TapCommand}"
+                                        CommandParameter="{Binding Id}"/>       
+                                </Frame.GestureRecognizers>
+                            </Frame>
+
+                            <Frame BackgroundColor="{DynamicResource PrimaryDark}" BorderColor="Transparent" Grid.Row="2" CornerRadius="30" Padding="14, 0" >
+                                <StackLayout VerticalOptions="Center">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Ingredients" FontFamily="CocogooseProSemiLight" FontSize="Micro" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="Time" FontFamily="CocogooseProSemiLight" FontSize="Micro" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding NumberOfIngredients}" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="StartAndExpand"/>
+                                        <Label Text="{Binding PreparationTime, StringFormat='{0:%m}m'}" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <Frame CornerRadius="20" Padding="0" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}" Grid.Row="4" Margin="7, 3" TranslationY="5">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+
+                    <ImageButton Source="addicon.svg"/>
+                    <Label Text="Not here? Add it!" 
+                       FontFamily="CocogooseProSemiLight" 
+                       FontSize="Large" 
+                       TextColor="{DynamicResource PrimaryDarkText}"
+                       HorizontalOptions="Center" 
+                       Padding="6"
+                       VerticalOptions="Center"/>
+                    
+                </StackLayout>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddCommand}"/>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

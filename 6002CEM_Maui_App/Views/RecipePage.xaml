@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_6002CEM_Maui_App.Views.RecipePage"
+             xmlns:viewmodel="clr-namespace:_6002CEM_Maui_App.ViewModels"
+             x:DataType="viewmodel:RecipePageViewModel"
+             Title="RecipePage"
+             Shell.ForegroundColor="{DynamicResource PrimaryDarkText}"
+             BackgroundColor="{DynamicResource Primary}">
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*,*,*,*">
+            <Label Text="Recipedia"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   FontFamily="SweetSensations"
+                   TextColor="{DynamicResource PrimaryDarkText}"
+                   FontSize="41"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ScrollView>
+
+        <VerticalStackLayout Spacing="15" Padding="12, 0">
+            
+            <Frame CornerRadius="30" Padding="0">
+                <Grid RowDefinitions="*,*,*,*,*,*" >
+                    <Image Source="{Binding Img}" Aspect="AspectFill" Grid.Row="0" Grid.RowSpan="6"/>
+                    <ImageButton Source="{Binding IsFaveImg}" Command="{Binding SetIdCommand}" Grid.Row="5" TranslationY="-10" TranslationX="20" HorizontalOptions="EndAndExpand"/>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{DynamicResource Primary}" BorderColor="Transparent" TranslationY="-50">
+                <VerticalStackLayout>
+                    <Label Text="{Binding Title}" FontFamily="CocogooseProSemiLight" FontSize="26" TextColor="{DynamicResource PrimaryDarkText}" Padding="6, 0"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding PrepTime, StringFormat='Prep: {0:%m}m |'}" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="Start" FontSize="Small" Padding="6, 0"/>
+                        <Label Text="{Binding CookTime, StringFormat='Cook: {0:%m}m'}" TextColor="{DynamicResource PrimaryDarkText}" HorizontalOptions="StartAndExpand" FontSize="Small"/>
+                    </StackLayout>
+                    <Label Text="{Binding Description}" TextColor="{DynamicResource PrimaryDarkText}" LineHeight="0.9" FontSize="16" Padding="5, 7"/>
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BackgroundColor="{DynamicResource PrimaryDark}" BorderColor="{DynamicResource PrimaryDarkText}" TranslationY="-60">
+                <VerticalStackLayout>
+                    <Label Text="Ingredients" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}" Margin="0" Padding="6.9"/>
+                    <Label Text="{Binding Ingredients}" FontSize="16" TextColor="{DynamicResource PrimaryDarkText}" LineHeight="0.9" Margin="0" Padding="9, 0"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="0" BackgroundColor="{DynamicResource Primary}" BorderColor="Transparent" TranslationY="-60">
+                <VerticalStackLayout>
+                    <Label Text="Steps" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}" Margin="0" Padding="6.9"/>
+                    <Label Text="{Binding Steps}" FontSize="15" TextColor="{DynamicResource PrimaryDarkText}" LineHeight="0.9" Margin="0" Padding="9, 0"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+        
+    </ScrollView>
+</ContentPage>

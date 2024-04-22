@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:_6002CEM_Maui_App.ViewModels"
+             x:Class="_6002CEM_Maui_App.Views.HelpPage"
+             Title="HelpPage"
+             BackgroundColor="{DynamicResource Primary}">
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*,*,*,*">
+            <Label Text="Recipedia"
+           Grid.Column="1"
+           Grid.ColumnSpan="3"
+           FontFamily="SweetSensations"
+           FontSize="41"
+           TextColor="{DynamicResource PrimaryDarkText}"
+           VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <CollectionView ItemsSource="{Binding Help}" SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="30" 
+                               HorizontalOptions="FillAndExpand" 
+                               BorderColor="Transparent" 
+                               BackgroundColor="{DynamicResource PrimaryDark}"
+                               Margin="10">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Question}" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                                <Label Text="{Binding Answer}" FontSize="14" TextColor="{DynamicResource PrimaryDarkText}"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

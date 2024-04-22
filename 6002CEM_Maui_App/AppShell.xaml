@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="_6002CEM_Maui_App.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:_6002CEM_Maui_App.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.BackgroundColor="{DynamicResource Primary}"
+    Shell.ForegroundColor="{DynamicResource PrimaryDarkText}"
+    Shell.TabBarBackgroundColor="{DynamicResource Primary}"
+    Shell.TabBarForegroundColor="{DynamicResource PrimaryDarkText}"
+    Shell.TabBarTitleColor="{DynamicResource PrimaryDarkText}"
+    Shell.TitleColor="{DynamicResource PrimaryDarkText}"
+    Shell.TabBarUnselectedColor="#8C8C8C"
+    Shell.FlyoutWidth="270" >
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*,*,*,*">
+            <Label Text="Recipedia"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   FontFamily="SweetSensations"
+                   TextColor="{DynamicResource PrimaryDarkText}"
+                   FontSize="41"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <Shell.FlyoutHeader>
+        <Frame BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+            <Label Text="Recipedia" FontSize="40" FontFamily="SweetSensations" TextColor="{DynamicResource PrimaryDarkText}"/>
+        </Frame>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Route="MainPage"
+            Title="Home"
+            ContentTemplate="{DataTemplate views:MainPage}" 
+            Icon="homeicon.svg"/>
+
+        <ShellContent
+            Route="CategoryPage"
+            Title="Categories"
+            ContentTemplate="{DataTemplate views:CategoriesPage}"
+            Icon="categoriesicon.svg"/>
+
+        <ShellContent
+            Route="FavouritesPage"
+            Title="Favourites"
+            ContentTemplate="{DataTemplate views:FavouritesPage}" 
+            Icon="favouritesicon.svg"/>
+
+    </FlyoutItem>
+
+    <ShellContent
+        ContentTemplate="{DataTemplate views:RecipePage}"
+        Route="RecipePage"
+        FlyoutItemIsVisible="False"
+        />
+    <ShellContent
+        Route="CustomRecipesPage"
+        Title="Custom Recipes"
+        ContentTemplate="{DataTemplate views:CustomListPage}" 
+        Icon="customrecipesicon.svg"
+        FlyoutItemIsVisible="True"/>
+    <ShellContent
+        Route="SettingsPage"
+        Title="Settings"
+        ContentTemplate="{DataTemplate views:SettingsPage}" 
+        Icon="settingsicon.svg"
+        FlyoutItemIsVisible="True"/>
+    <ShellContent
+        Route="HelpPage"
+        Title="Help"
+        ContentTemplate="{DataTemplate views:HelpPage}" 
+        Icon="helpicon.svg"
+        FlyoutItemIsVisible="True"/>
+
+</Shell>

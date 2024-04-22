@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_6002CEM_Maui_App.Views.RecipeCreatePage"
+             xmlns:viewmodel="clr-namespace:_6002CEM_Maui_App.ViewModels"
+             Title="RecipeCreatePage"
+             BackgroundColor="{DynamicResource Primary}">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*,*,*,*">
+            <Label Text="Recipedia"
+               Grid.Column="1"
+               Grid.ColumnSpan="3"
+               FontFamily="SweetSensations"
+               FontSize="41"
+               TextColor="{DynamicResource PrimaryDarkText}"
+               VerticalOptions="Center"/>
+            <ImageButton Source="tickicon.svg" Grid.Column="4" Command="{Binding ValidateDataCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
+
+    <ScrollView>
+        <VerticalStackLayout Padding="12, 5" Spacing="15">
+            <Label Text="* Required" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="Image URL" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Entry x:Name="imgUrlBox" Text="{Binding Img}" Placeholder="Enter URL of optional recipe banner image..." TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="* Title" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Entry x:Name="titleBox" Text="{Binding Title}" Placeholder="Enter recipe title..." TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="Category" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Picker x:Name="categoryPicker" SelectedItem="{Binding Category}" Title="Select a category..." TextColor="{DynamicResource PrimaryDarkText}" TitleColor="{DynamicResource PrimaryDarkText}">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Vegan</x:String>
+                                <x:String>Dessert</x:String>
+                                <x:String>Quick Easy Meals</x:String>
+                                <x:String>International Cuisine</x:String>
+                                <x:String>High Protein</x:String>
+                                <x:String>Healthy Snacks</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="Preparation Time" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Picker x:Name="prepMinutePicker" SelectedItem="{Binding PrepTime}" Title="Select time in minutes..." TextColor="{DynamicResource PrimaryDarkText}" TitleColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="Cooking Time" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Picker x:Name="cookMinutePicker" SelectedItem="{Binding CookTime}" Title="Select time in minutes..." TextColor="{DynamicResource PrimaryDarkText}" TitleColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="0" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text=" Description" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Editor x:Name="descriptionBox" Text="{Binding Description}" Placeholder="Enter optional recipe description..." AutoSize="TextChanges" TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="* # of Ingredients" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Entry x:Name="numIngredientsBox" Text="{Binding NumberIngredients}" Placeholder="Enter number of ingredients used in recipe..." TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="0" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="* Ingredients" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Editor x:Name="ingredientsBox" Text="{Binding Ingredients}" Placeholder="Enter recipe ingredients..." AutoSize="TextChanges" TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame CornerRadius="30" HorizontalOptions="FillAndExpand" Margin="0" BorderColor="Transparent" BackgroundColor="{DynamicResource PrimaryDark}">
+                <VerticalStackLayout>
+                    <Label Text="* Steps" FontAttributes="Bold" FontSize="20" FontFamily="CocogooseProSemiLight" TextColor="{DynamicResource PrimaryDarkText}"/>
+                    <Editor x:Name="stepsBox" Text="{Binding Steps}" Placeholder="Enter recipe steps..." AutoSize="TextChanges" TextColor="{DynamicResource PrimaryDarkText}"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
